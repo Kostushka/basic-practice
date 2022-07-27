@@ -36,7 +36,7 @@ const binarySearch = (arr, item) => {
             return mid;
         } else if (arr[mid] > item) {
             high = mid - 1;
-        } else if (arr[mid] < item) {
+        } else {
             low = mid + 1;
         }
     }
