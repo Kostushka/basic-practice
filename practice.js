@@ -106,3 +106,32 @@ function count(string) {
     return {};
 }
 count('Hello');
+
+// Убрать разделитель и строку сделать camelCase
+
+function toCamelCase(str) {
+    if (str === '') return '';
+    return str
+        .split(/[-_]/)
+        .map((el, i) => {
+            return i === 0 ? el : el.charAt(0).toUpperCase() + el.slice(1);
+        })
+        .join('');
+}
+console.log(toCamelCase('the_stealth_warrior'));
+
+const toCamelCase2 = (str) => {
+    const arr = str.split(/[-_]/);
+    if (arr.length < 2) {
+        return str;
+    } else {
+        return (
+            arr[0] +
+            arr
+                .slice(1)
+                .map((el) => el.charAt(0).toUpperCase() + el.slice(1))
+                .join('')
+        );
+    }
+};
+console.log(toCamelCase2('the_stealth_warrior'));
