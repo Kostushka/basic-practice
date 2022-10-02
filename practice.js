@@ -54,3 +54,55 @@ const result = func('aaabb');
 const result2 = func('abcd');
 const result3 = func('aabccdee');
 console.log(result, result2, result3);
+
+// --------------------------------------------------------------------------------------------------------
+
+// Строка с хэштегом
+function generateHashtag(string) {
+    if (string.trim() === '') return false;
+
+    const stringWithCamelCase = string
+        .split(' ')
+        .map((el) => el.charAt(0).toUpperCase() + el.slice(1))
+        .join('');
+
+    const stringWithHashtag = `#${stringWithCamelCase.trim()}`;
+
+    return stringWithHashtag.length > 140 ? false : stringWithHashtag;
+}
+
+console.log(generateHashtag('Hello my Friend!'));
+
+// Перевернуть каждый второй элемент строки
+
+function reverse(str) {
+    return str
+        .split(' ')
+        .map((el, i) => {
+            return i % 2 !== 0 ? el.split('').reverse().join('') : el;
+        })
+        .join(' ')
+        .trim();
+}
+console.log(reverse('Hello friend hello my dear!'));
+
+// Посчитать количество символов в строке и записать в хэш-таблицу: 'aba' => {'a': 2, 'b': 1}
+
+function count(string) {
+    if (string) {
+        const countEl = {};
+        for (let char of string) {
+            countEl[char] = 0;
+            console.log(countEl);
+            for (let i = 0; i < string.length; i++) {
+                if (char === string[i]) {
+                    countEl[char]++;
+                }
+            }
+        }
+        console.log(countEl);
+        return countEl;
+    }
+    return {};
+}
+count('Hello');
