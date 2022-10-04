@@ -135,3 +135,22 @@ const toCamelCase2 = (str) => {
     }
 };
 console.log(toCamelCase2('the_stealth_warrior'));
+
+function toCamelCase3(str) {
+    arr = str.split('');
+    out = [];
+    toUpper = false;
+    for (let i = 0; i < arr.length; i++) {
+        switch (arr[i]) {
+            case '-':
+            case '_':
+                toUpper = true;
+                break;
+            default:
+                out.push(toUpper ? arr[i].toUpperCase() : arr[i]);
+                toUpper = false;
+        }
+    }
+    return out.join('');
+}
+console.log(toCamelCase3('the_stealth_warrior'));
