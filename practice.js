@@ -154,3 +154,60 @@ function toCamelCase3(str) {
     return out.join('');
 }
 console.log(toCamelCase3('the_stealth_warrior'));
+
+// --------------------------------------------------------------------------------------------------------
+
+// > 1. Научиться нормализовать строки, приводя их все к единому виду, чтобы можно было определять точно какая на какую похожа или нет
+// > 2. Найти большинство и "не такую как всех"
+
+function normalString(string) {
+    // убираем дубли, сортируем символы
+    const uniq = {};
+    const stringArr = [];
+
+    for (let char of string.toLowerCase()) {
+        uniq[char] = 1;
+    }
+    for (let el in uniq) {
+        stringArr.push(el);
+    }
+    return stringArr.sort().join('');
+}
+const findUniq = (arr) => {
+    const count = {}; // счетчик для строк в нормализованном массиве, например: {abc: 5, foo: 1}
+    const finalArr = []; // массив для извлечения из счетчика уникальной строки
+    let finalStr = ''; // итоговая строка
+
+    const normalArr = arr.map((el) => normalString(el)); // приведение всех строк к одному виду для сравнения
+
+    // записываем в счетчик элементы нормализованного массива
+    for (let el of normalArr) {
+        if (el in count) {
+            count[el]++;
+        } else {
+            count[el] = 1;
+        }
+    }
+    // записываем в массив уникальную строку со значением 1 в счетчике
+    for (let key in count) {
+        if (count[key] === 1) {
+            finalArr.push(key);
+        }
+    }
+    // преобразуем массив в строку
+    const uniqEl = finalArr.join('');
+
+    // находим в изначальном массиве элемент, включающий уникальную строку
+    arr.map((el) => {
+        const newEl = el.toLowerCase().split('').sort(); // преобразуем строки к виду нормализованных строк
+        const a = [...new Set(newEl)].join(''); // убираем дубли, если есть
+        if (a.includes(uniqEl)) {
+            finalStr = el;
+        }
+    });
+    return finalStr;
+};
+
+console.log(
+    findUniq(['Tom Marvolo Riddle', 'I am Lord Voldemort', 'Harry Potter'])
+);
