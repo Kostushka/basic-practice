@@ -3,7 +3,19 @@ const numbers = [
 ];
 
 // Линейный поиск
-const linearSearch = (arr, item) => {
+
+function linearSearch1(arr, item) {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === item) {
+            return i;
+        }
+    }
+    return null;
+}
+const result = linearSearch1(numbers, 24);
+console.log(result);
+
+const linearSearch2 = (arr, item) => {
     const lastIndex = arr.length - 1;
     const lastEl = arr[lastIndex];
     let itemIndex = 0;
@@ -12,6 +24,7 @@ const linearSearch = (arr, item) => {
     } else {
         arr[lastIndex] = item;
     }
+    // цикл без условия
     for (let i = 0; true; i++) {
         if (item === arr[i]) {
             itemIndex = i;
@@ -23,7 +36,7 @@ const linearSearch = (arr, item) => {
     return itemIndex;
 };
 
-const res = linearSearch(numbers, 45);
+const res = linearSearch2(numbers, 45);
 console.log(res);
 
 // Бинарный поиск
