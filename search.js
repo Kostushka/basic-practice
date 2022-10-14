@@ -40,6 +40,7 @@ const res = linearSearch2(numbers, 45);
 console.log(res);
 
 // Бинарный поиск
+
 const binarySearch = (arr, item) => {
     let low = 0;
     let high = arr.length - 1;
@@ -58,3 +59,22 @@ const binarySearch = (arr, item) => {
 
 const res2 = binarySearch(numbers, 13);
 console.log(res2);
+
+// Бинарный поиск с рекурсией
+
+const biSearch = (arr, item, low, high) => {
+    while (low <= high) {
+        let mid = Math.floor((low + high) / 2);
+
+        if (arr[mid] === item) {
+            return mid;
+        } else if (item < arr[mid]) {
+            return biSearch(arr, item, low, mid - 1);
+        } else {
+            return biSearch(arr, item, mid + 1, high);
+        }
+    }
+    return null;
+};
+
+console.log(biSearch(numbers, 13, 0, numbers.length - 1));
