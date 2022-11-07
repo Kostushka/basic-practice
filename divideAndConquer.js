@@ -56,3 +56,36 @@ const recurMaxElArr = (arr) => {
 };
 
 console.log('max ' + recurMaxElArr([499, 5, 85, 356, 98, 2, 54]));
+
+// --------------------------------------------------------------
+
+// Быстрая сортировка массива
+const num = [4, 3, 90, 58, 43, 21, 12, 45, 844, 333, 859, 23, 89, 75];
+function qSort(arr) {
+    // базовый случай
+    if (arr.length < 2) {
+        return arr;
+    }
+
+    // let num = arr[0]; // опорный элемент
+    const betterEl = arr[Math.floor(arr.length / 2)]; // лучший вариант опорного элемента
+    const min = [];
+    const max = [];
+    // for (let i = 1; i < arr.length; i++) {
+    //     if (arr[i] < num) {
+    //         min.push(arr[i]);
+    //     } else {
+    //         max.push(arr[i]);
+    //     }
+    // }
+    for (let char of arr) {
+        if (char < betterEl) {
+            min.push(char);
+        } else if (char > betterEl) {
+            max.push(char);
+        }
+    }
+    return [...qSort(min), betterEl, ...qSort(max)];
+}
+const result = qSort(num);
+console.log(result);
