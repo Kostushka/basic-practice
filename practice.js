@@ -201,7 +201,10 @@ const findUniq = (arr) => {
     arr.map((el) => {
         const newEl = el.toLowerCase().split('').sort(); // преобразуем строки к виду нормализованных строк
         const a = [...new Set(newEl)].join(''); // убираем дубли, если есть
-        if (a.includes(uniqEl)) {
+        // if (a.includes(uniqEl)) {
+        //     finalStr = el;
+        // }
+        if (a === uniqEl) {
             finalStr = el;
         }
     });
@@ -211,3 +214,71 @@ const findUniq = (arr) => {
 console.log(
     findUniq(['Tom Marvolo Riddle', 'I am Lord Voldemort', 'Harry Potter'])
 );
+
+// --------------------------------------------------------------------------
+// Реализуйте функцию unique_in_order, которая принимает в качестве аргумента последовательность и возвращает список элементов без каких-либо элементов с одинаковым значением рядом друг с другом и с сохранением исходного порядка элементов.
+
+// uniqueInOrder('AAAABBBCCDAABBB') == ['A', 'B', 'C', 'D', 'A', 'B']
+// uniqueInOrder('ABBCcAD')         == ['A', 'B', 'C', 'c', 'A', 'D']
+// uniqueInOrder([1,2,2,3,3])       == [1,2,3]
+
+var uniqueInOrder = function (iterable) {
+    const arr = [];
+    const newArr = [];
+    for (let char of iterable) {
+        arr.push(char);
+    }
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === arr[i + 1]) {
+            continue;
+        } else {
+            newArr.push(arr[i]);
+        }
+    }
+    return newArr;
+};
+
+const resultcode = uniqueInOrder('AAAABBBCCDAABBB');
+console.log(resultcode);
+
+// Есть 8 шариков. 1 тяжелее остальных. Надо через два взвешивания на весах найти более тяжелый шарик.
+
+const arr = [ball1, ball2, ball3, ball4, ball5, ball6, ball7, ball8];
+
+function getMas(el) {
+    // типа получаю массу переданных элементов
+}
+
+function findAnotherBall(arr) {
+    const firstArr = [];
+    const secondArr = [];
+    const thirdArr = [];
+
+    firstArr.push(arr[0], arr[1], arr[2]);
+    secondArr.push(arr[3], arr[4], arr[5]);
+    thirdArr.push(arr[7], arr[8]);
+
+    if (getMas(firstArr) === getMas(secondArr)) {
+        if (getMas(thirdArr[0]) > getMas(thirdArr[1])) {
+            return thirdArr[0];
+        } else {
+            return thirdArr[1];
+        }
+    } else if (getMas(firstArr) > getMas(secondArr)) {
+        if (getMas(firstArr[0] === firstArr[1])) {
+            return firstArr[2];
+        } else if (getMas(firstArr[0] > firstArr[1])) {
+            return firstArr[0];
+        } else {
+            return firstArr[1];
+        }
+    } else {
+        if (getMas(secondArr[0] === secondArr[1])) {
+            return secondArr[2];
+        } else if (getMas(secondArr[0] > secondArr[1])) {
+            return secondArr[0];
+        } else {
+            return secondArr[1];
+        }
+    }
+}
