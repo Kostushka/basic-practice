@@ -24,7 +24,7 @@ function graphSearchSeller(graph, start) {
                 // иначе добавляем в очередь соседей первого соседа
                 queue = [...queue, ...graph[firstPeople]];
                 // добавляем соседа в список проверенных
-                tested[firstPeople] = 1;
+                tested[firstPeople] = true;
                 console.log(queue);
             }
         }
@@ -58,7 +58,7 @@ function graphSearchWithEnd(graph, start, end) {
                 return count;
             } else {
                 queue = [...queue, ...graph[firstElQueue]];
-                tested[firstElQueue] = 1;
+                tested[firstElQueue] = true;
                 count++;
                 console.log(queue);
             }
