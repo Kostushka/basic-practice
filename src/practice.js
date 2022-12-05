@@ -282,3 +282,54 @@ function findAnotherBall(arr) {
         }
     }
 }
+
+// vowelOne( "123, arou" ) => "000001011"
+
+function vowelOne(s) {
+    const vowel = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
+    const arrS = s.split('');
+    const resArr = [];
+    arrS.map((el) => {
+        if (vowel.includes(el)) {
+            resArr.push(1);
+        } else {
+            resArr.push(0);
+        }
+    });
+    return resArr.join('');
+}
+
+// Найти общие элементы массивов
+
+const arr1 = [1, 4, 23, 23, 67, 43, 3];
+const arr2 = [34, 1, 65, 65, 22, 6, 4, 23, 23];
+
+function elements(arr1, arr2) {
+    // const newArr = [];
+    // // const count = {};
+    // for (let char1 of arr1) {
+    //     // if (!count[char1]) {
+    //     for (let char2 of arr2) {
+    //         if (char1 === char2) {
+    //             newArr.push(char1);
+    //             count[char1] = 1;
+    //         }
+    //     }
+    //     // }
+    // }
+    // return newArr;
+    const res = [];
+    const arr1Hash = {};
+    for (let char of arr1) {
+        arr1Hash[char] = true;
+    }
+    for (let char of arr2) {
+        if (arr1Hash[char]) {
+            res.push(char);
+            arr1Hash[char] = false;
+        }
+    }
+    return res;
+}
+
+console.log(elements(arr1, arr2));

@@ -78,3 +78,5 @@ const biSearch = (arr, item, low, high) => {
 };
 
 console.log(biSearch(numbers, 13, 0, numbers.length - 1));
+
+module.exports = linearSearch1;

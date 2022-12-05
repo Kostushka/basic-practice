@@ -2,7 +2,7 @@ const arr = [23, 87, 12, 45, 32, 98, 11, 3, 5, 45, 78, 32, 90, 2, 4];
 
 // Сортировка выбором
 // функция, которая принимает массив и возвращает индекс наименьшего элемента
-const findMinEl = (arr) => {
+const findMinIndex = (arr) => {
     let minEl = arr[0];
     let minIndex = 0;
     for (let i = 0; i < arr.length; i++) {
@@ -14,17 +14,23 @@ const findMinEl = (arr) => {
     }
     return minIndex;
 };
+
 const selectionSort = (arr) => {
     const newArr = [];
 
     while (arr.length) {
-        const minIndex = findMinEl(arr);
+        const minIndex = findMinIndex(arr);
         // извлекаем наименьший элемент из неупорядоченного массива и помещаем в новый, пока неупорядоченный массив не закончится
         const minEl = arr.splice(minIndex, 1)[0];
         newArr.push(minEl);
     }
 
     return newArr;
+};
+
+module.exports = {
+    selectionSort: selectionSort,
+    findMinIndex: findMinIndex,
 };
 
 const a = selectionSort(arr);

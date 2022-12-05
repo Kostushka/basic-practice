@@ -6,6 +6,42 @@ graph.anuj = [];
 graph.peggy = [];
 graph.claire = [];
 
+const graphLesson = {
+    getUp: ['make the bed', 'have breakfast', 'brush teeth', 'books'],
+    ['have breakfast']: ['mango', 'bread', 'eggs'],
+    books: ['network', 'algorithms', 'C', 'OC', 'rest'],
+    react: ['React practice', 'rest'],
+    rest: ['Youtube', 'chat with friends', 'react', 'goToBed'],
+    goToBed: ['brush teeth again', 'think about the day'],
+};
+
+class List {
+    constructor(first, graph) {
+        this.list = [];
+        this.firstEl = first;
+        this.graph = graph;
+    }
+    add() {
+        let test = {};
+        let queue = [this.firstEl, ...this.graph[this.firstEl]];
+        while (queue.length) {
+            const el = queue.shift();
+            if (!this.graph[el]) {
+                this.graph[el] = [];
+            }
+            if (!test[el]) {
+                this.list.push(el);
+                queue = [...queue, ...this.graph[el]];
+                test[el] = true;
+            }
+        }
+        return this.list;
+    }
+}
+
+const list = new List('getUp', graphLesson);
+console.log(list.add());
+
 function graphSearchSeller(graph, start) {
     let queue; // очередь
     const tested = {}; // проверенные элементы
@@ -66,4 +102,4 @@ function graphSearchWithEnd(graph, start, end) {
     return false;
 }
 
-console.log(graphSearchWithEnd(graph, 'you', 'peggy'));
+console.log(graphSearchWithEnd(graph, 'you', 'sandra'));
