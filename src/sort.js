@@ -57,3 +57,38 @@ const selectionSort2 = (array) => {
 };
 
 console.log(selectionSort2(arr));
+
+// ---------------------------------------------------------------------------------------
+// быстрая сортировка
+function qsort(arr, start, end) {
+    let pivot, i;
+
+    if (start >= end) {
+        return;
+    }
+
+    swap(arr, start, Math.floor((start + end) / 2));
+
+    pivot = start;
+
+    for (i = start + 1; i <= end; i++) {
+        if (arr[start] - arr[i] > 0) {
+            swap(arr, ++pivot, i);
+        }
+    }
+
+    swap(arr, start, pivot);
+
+    qsort(arr, start, pivot - 1);
+    qsort(arr, pivot + 1, end);
+}
+
+function swap(arr, i, j) {
+    let temp;
+    temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+}
+
+qsort(arr, 0, arr.length - 1);
+console.log(arr);
